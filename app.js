@@ -39,15 +39,36 @@
 
 
 // EVENT MODULE & EVENT ARGUMENTS
-const EvenEmitter = require('events');
+// const EvenEmitter = require('events');
 
-const Logger = require('./logger');
-const logger = new Logger();
+// const Logger = require('./logger');
+// const logger = new Logger();
 
-// Register listener
-logger.on('messageLogged', (arg) => {
-    console.log('Listener called', arg);
+// // Register listener
+// logger.on('messageLogged', (arg) => {
+//     console.log('Listener called', arg);
+// });
+
+
+// logger.log('message');
+
+
+
+// HTTP MODULE
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+    if (req.url === '/') {
+        res.write('Hello World');
+        res.end();
+    }
+
+    if (req.url === '/api/courses') {
+        res.write(JSON.stringify([1, 2, 3]));
+        res.end();
+    }
 });
 
+server.listen(3300);
 
-logger.log('message');
+console.log('listening on port 3300...');
