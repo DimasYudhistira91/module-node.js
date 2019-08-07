@@ -1,11 +1,15 @@
-// console.log(__filename);
-// console.log(__dirname);
+const EvenEmitter = require('events');
 
-// var url = 'http://mylogger.io/log';
+var url = 'http://mylogger.io/log';
 
-// function log(message) {
-//   // send an http request
-//   console.log(message);
-// }
+class Logger extends EvenEmitter {
+    log(message) {
+    // send an http request
+    console.log(message);
 
-// module.exports = log;
+    // Raise an Event
+    this.emit('messageLogged', {id: 1, url: 'http://'});
+    }
+}
+
+module.exports = Logger;

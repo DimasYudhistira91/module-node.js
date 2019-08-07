@@ -27,12 +27,27 @@
 
 
 // FILE SYSTEM MODULE
-const fs = require('fs');
+// const fs = require('fs');
 
-const file = fs.readdirSync('./');
-console.log(file);
+// // const files = fs.readdirSync('./');
+// // console.log(files);
 
-fs.readdir('$', function(err, files) {
-    if (err) console.log('Error', err);
-    else console.log('Result', files);
+// fs.readdir('./', function(err, files) {
+//     if (err) console.log('Error', err);
+//     else console.log('Result', files);
+// });
+
+
+// EVENT MODULE & EVENT ARGUMENTS
+const EvenEmitter = require('events');
+
+const Logger = require('./logger');
+const logger = new Logger();
+
+// Register listener
+logger.on('messageLogged', (arg) => {
+    console.log('Listener called', arg);
 });
+
+
+logger.log('message');
